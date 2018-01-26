@@ -89,9 +89,13 @@ namespace FileSieve
 				try
 				{
 					string destFile = destWorkingDir + @"\" + Path.GetFileName(file);
-					string relativeName = subPath.Substring(1) + @"\" + Path.GetFileName(file);
+                    string relativeName;
+                    if (subPath.Length > 1)
+					    relativeName = subPath.Substring(1) + @"\" + Path.GetFileName(file);
+                    else
+                        relativeName = Path.GetFileName(file);
 
-					if (!preview)
+                    if (!preview)
 					{
 						if (!Directory.Exists(destWorkingDir))
 							Directory.CreateDirectory(destWorkingDir);
